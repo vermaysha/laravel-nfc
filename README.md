@@ -1,61 +1,469 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel NFC Employee Attendance System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A secure, modern employee attendance system using NFC cards with Laravel 12 backend and mobile-responsive frontend. Features advanced security measures including RSA encryption, device fingerprinting, and clone detection.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-12-red.svg)
+![PHP](https://img.shields.io/badge/PHP-8.3-blue.svg)
+![NFC](https://img.shields.io/badge/NFC-Web%20API-green.svg)
+![Security](https://img.shields.io/badge/Security-RSA%20Encryption-orange.svg)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🔐 Security Features
+- **RSA Asymmetric Encryption**: Secure card data with public/private key pairs
+- **Device Fingerprinting**: Track and validate scanning devices
+- **Clone Detection**: Advanced algorithms to detect cloned NFC cards
+- **Anti-Replay Protection**: Nonce-based security to prevent replay attacks
+- **Suspicious Activity Monitoring**: Real-time detection and flagging
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 📱 NFC Technology
+- **NTAG215 Optimized**: Compact data structure for 500-byte NFC cards
+- **Web NFC API**: Modern browser-based NFC scanning
+- **Mobile Responsive**: Optimized for mobile Chrome and Opera browsers
+- **Real-time Processing**: Instant attendance recording and validation
 
-## Learning Laravel
+### 💼 Business Features
+- **Employee Management**: Complete CRUD operations for employees
+- **NFC Card Management**: Issue, activate, block, and track NFC cards
+- **Attendance Tracking**: Check-in/check-out with timestamps and locations
+- **Dashboard Analytics**: Real-time attendance statistics and reports
+- **Responsive Design**: Mobile-first design with Tailwind CSS
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📋 System Requirements
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Server Requirements
+- **PHP**: 8.3 or higher
+- **Laravel**: 12.x
+- **Database**: SQLite (included) or MySQL/PostgreSQL
+- **Extensions**: OpenSSL, JSON, PDO
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Client Requirements
+- **Mobile Browser**: Chrome for Android 89+ or Opera for Android 63+
+- **NFC Hardware**: Device with NFC capability
+- **Permissions**: NFC access permissions
 
-## Laravel Sponsors
+## 🛠️ Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. Clone Repository
+```bash
+git clone <repository-url>
+cd laravel-nfc
+```
 
-### Premium Partners
+### 2. Install Dependencies
+```bash
+# Install PHP dependencies
+composer install
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# Install Node.js dependencies (if using Vite)
+npm install
+```
 
-## Contributing
+### 3. Environment Setup
+```bash
+# Copy environment file
+cp .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Generate application key
+php artisan key:generate
+```
 
-## Code of Conduct
+### 4. Database Setup
+```bash
+# Run migrations
+php artisan migrate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Seed database with sample data (optional)
+php artisan db:seed
+```
 
-## Security Vulnerabilities
+### 5. Start Development Server
+```bash
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Visit `http://localhost:8000` to access the application.
 
-## License
+## 📖 Usage Guide
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 🏢 Employee Management
+
+#### Adding New Employees
+1. Navigate to **Employees** section
+2. Click **Add Employee**
+3. Fill in employee details:
+   - Employee ID (unique)
+   - First Name, Last Name
+   - Email, Phone
+   - Department, Position
+   - Hire Date
+
+#### Employee Status Management
+- **Active**: Employee can use attendance system
+- **Inactive**: Employee access is disabled
+- **Suspended**: Temporary access suspension
+
+### 💳 NFC Card Management
+
+#### Issuing NFC Cards
+1. Go to **NFC Cards** section
+2. Click **Write New Card**
+3. Select employee from dropdown
+4. Follow mobile browser prompts to write card data
+5. Card automatically linked to employee
+
+#### Card Security Features
+- **RSA Encryption**: Each card has unique public/private key pair
+- **Compact Payload**: Optimized for NTAG215 (98-byte payload)
+- **Expiration**: Cards expire after 1 year (configurable)
+- **Status Tracking**: Active, blocked, expired status
+
+### 📊 Attendance Scanning
+
+#### Mobile NFC Scanning
+1. Open scanner on mobile device with NFC
+2. Choose **Check In** or **Check Out** mode
+3. Tap **Start Scanning**
+4. Grant NFC permissions when prompted
+5. Hold NFC card near device
+6. View real-time attendance confirmation
+
+#### Test Mode (Development)
+1. Enable **Test Mode** checkbox (desktop only)
+2. Click **Start Scanning**
+3. Click scanner area to simulate NFC reads
+4. Perfect for development and testing
+
+### 📈 Dashboard & Analytics
+
+#### Real-time Statistics
+- Today's attendance summary
+- Active employees count
+- Recent scan activity
+- Security alerts and suspicious activities
+
+#### Attendance Reports
+- Employee attendance history
+- Check-in/check-out patterns
+- Late arrivals and early departures
+- Export capabilities for payroll integration
+
+## 🔧 Configuration
+
+### Security Settings
+
+#### RSA Key Configuration
+```php
+// config/nfc.php
+'rsa' => [
+    'key_size' => 2048,
+    'private_key_path' => storage_path('app/private/nfc_private.pem'),
+    'public_key_path' => storage_path('app/private/nfc_public.pem'),
+]
+```
+
+#### Device Fingerprinting
+```php
+'device_fingerprinting' => [
+    'enabled' => true,
+    'risk_threshold' => 'medium', // low, medium, high
+    'block_suspicious_devices' => true,
+]
+```
+
+#### Clone Detection
+```php
+'clone_detection' => [
+    'enabled' => true,
+    'sensitivity' => 'high', // low, medium, high
+    'auto_block' => true,
+]
+```
+
+### Database Configuration
+
+#### SQLite (Default)
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=/path/to/database.sqlite
+```
+
+#### MySQL
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_nfc
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+## 🔐 Security Architecture
+
+### Data Flow Security
+```
+NFC Card (NTAG215) → Mobile Browser (Web NFC API) → Laravel Backend
+     ↓                        ↓                           ↓
+Encrypted Payload → Device Fingerprinting → RSA Verification
+     ↓                        ↓                           ↓
+Clone Detection → Database Storage → Attendance Record
+```
+
+### Encryption Details
+- **Algorithm**: RSA-2048 with SHA-256 signatures
+- **Key Management**: Separate public/private keys per card
+- **Payload Security**: AES-256 encrypted employee data
+- **Integrity**: SHA-256 HMAC for tamper detection
+
+### Device Security
+- **Fingerprinting**: Canvas, WebGL, UserAgent, Screen resolution
+- **Risk Assessment**: Low, Medium, High risk levels
+- **Device Blocking**: Automatic blocking of suspicious devices
+- **Session Tracking**: Device usage patterns and anomalies
+
+## 📱 Mobile Browser Setup
+
+### Chrome for Android
+1. Ensure Chrome version 89+
+2. Enable NFC in device settings
+3. Grant location permissions (required for NFC)
+4. Allow NFC access when prompted
+
+### Opera for Android
+1. Ensure Opera version 63+
+2. Enable NFC in device settings
+3. Grant location permissions
+4. Allow NFC access when prompted
+
+### Troubleshooting NFC Issues
+- **Permission Denied**: Check NFC permissions in browser settings
+- **NFC Not Supported**: Verify device has NFC hardware
+- **Scan Failures**: Ensure card is properly positioned (1-2cm from device)
+- **Data Errors**: Check card isn't damaged or demagnetized
+
+## 🛠️ Development
+
+### Project Structure
+```
+laravel-nfc/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── AttendanceController.php    # Attendance scan processing
+│   │   ├── EmployeeController.php      # Employee management
+│   │   └── NfcController.php          # NFC card operations
+│   ├── Models/
+│   │   ├── Employee.php               # Employee model
+│   │   ├── NfcCard.php               # NFC card model
+│   │   ├── Attendance.php            # Attendance record model
+│   │   └── DeviceFingerprint.php     # Device tracking model
+│   └── Services/
+│       ├── NfcSecurityService.php    # NFC security & encryption
+│       └── DeviceFingerprintService.php # Device fingerprinting
+├── database/migrations/              # Database schema
+├── resources/views/                  # Blade templates
+└── routes/
+    ├── web.php                      # Web routes
+    └── api.php                      # API routes
+```
+
+### API Endpoints
+
+#### Employee Management
+```http
+GET    /api/employees              # List employees
+POST   /api/employees              # Create employee
+GET    /api/employees/{id}         # Get employee
+PUT    /api/employees/{id}         # Update employee
+DELETE /api/employees/{id}         # Delete employee
+```
+
+#### NFC Card Operations
+```http
+POST   /api/nfc/write             # Write new NFC card
+POST   /api/nfc/read              # Read NFC card data
+GET    /api/nfc                   # List NFC cards
+PATCH  /api/nfc/{id}/block        # Block NFC card
+```
+
+#### Attendance Processing
+```http
+POST   /api/attendance/scan       # Process attendance scan
+GET    /api/attendance            # List attendance records
+GET    /api/attendance/today      # Today's summary
+PATCH  /api/attendance/{id}/suspicious # Mark as suspicious
+```
+
+### Testing
+
+#### Unit Tests
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test suite
+php artisan test --testsuite=Feature
+php artisan test --testsuite=Unit
+```
+
+#### Browser Testing
+```bash
+# Start development server
+php artisan serve
+
+# Open test scanner (desktop)
+# Enable test mode for development
+```
+
+### Database Seeding
+```bash
+# Create sample data
+php artisan db:seed
+
+# Specific seeders
+php artisan db:seed --class=EmployeeSeeder
+php artisan db:seed --class=NfcCardSeeder
+```
+
+## 🔍 Troubleshooting
+
+### Common Issues
+
+#### NFC Scanner Not Working
+- **Check Browser Support**: Only Chrome/Opera on Android
+- **Verify NFC Hardware**: Test with other NFC apps
+- **Permission Issues**: Grant NFC access in browser
+- **Test Mode**: Use test mode for desktop development
+
+#### Attendance Scan Failures
+- **Card UID Mismatch**: Verify card is registered in system
+- **Encryption Errors**: Check RSA key configuration
+- **Device Blocked**: Review device fingerprint status
+- **Clone Detection**: Card may be flagged as suspicious
+
+#### Database Issues
+- **Migration Errors**: Check database permissions
+- **Seeding Failures**: Verify data format and constraints
+- **Connection Issues**: Validate database configuration
+
+### Logging and Debugging
+```bash
+# View application logs
+tail -f storage/logs/laravel.log
+
+# Enable debug mode
+# Set APP_DEBUG=true in .env
+
+# Clear caches
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+```
+
+## 🏗️ System Architecture
+
+### Core Components
+
+#### 1. NFC Security Service
+- Handles RSA encryption/decryption
+- Manages NTAG215 payload optimization
+- Implements clone detection algorithms
+- Validates card authenticity
+
+#### 2. Device Fingerprinting Service
+- Generates unique device signatures
+- Tracks device usage patterns
+- Implements risk assessment
+- Manages device blocking
+
+#### 3. Attendance Controller
+- Processes NFC scan requests
+- Validates card and device security
+- Records attendance with metadata
+- Handles duplicate scan prevention
+
+#### 4. Database Schema
+```sql
+-- Core tables
+employees (id, employee_id, name, email, status, ...)
+nfc_cards (id, employee_id, card_uid, public_key, encrypted_data, ...)
+attendances (id, employee_id, nfc_card_id, type, scanned_at, ...)
+device_fingerprints (id, fingerprint_hash, risk_level, status, ...)
+```
+
+### Security Flow
+
+1. **Card Registration**:
+   - Generate RSA key pair
+   - Encrypt employee data
+   - Create compact NDEF payload
+   - Store security data in database
+
+2. **Attendance Scan**:
+   - Read NDEF payload from card
+   - Generate device fingerprint
+   - Validate card against database
+   - Check for cloned card indicators
+   - Record attendance with security metadata
+
+3. **Security Validation**:
+   - Verify RSA signatures
+   - Check device fingerprint risk
+   - Detect replay attacks
+   - Monitor suspicious patterns
+
+## 📊 Performance Considerations
+
+### Database Optimization
+- Indexed card_uid and employee_id columns
+- Efficient queries with proper relationships
+- Pagination for large datasets
+- Regular cleanup of old records
+
+### Mobile Performance
+- Minimized JavaScript bundle size
+- Optimized NFC scanning loops
+- Responsive design with Tailwind CSS
+- Cached API responses where appropriate
+
+### Security Performance
+- Efficient RSA operations
+- Cached device fingerprints
+- Optimized clone detection algorithms
+- Background security monitoring
+
+## 📚 Additional Resources
+
+### Documentation
+- [Laravel Documentation](https://laravel.com/docs)
+- [Web NFC API Specification](https://w3c.github.io/web-nfc/)
+- [NTAG215 Technical Specifications](https://www.nxp.com/docs/en/data-sheet/NTAG213_215_216.pdf)
+
+### Security Best Practices
+- Regularly rotate RSA keys
+- Monitor device fingerprint patterns
+- Review suspicious activity reports
+- Update browser requirements as needed
+- Implement proper backup procedures
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](LICENSE).
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📞 Support
+
+For technical support or questions:
+- Create an issue in the repository
+- Review existing documentation
+- Check troubleshooting guide above
+
+---
+
+**Built with ❤️ using Laravel 12 and modern web technologies**
